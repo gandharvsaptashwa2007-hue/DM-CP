@@ -3,6 +3,57 @@
 An educational project connecting Unit 5 number theory to RSA through visible
 calculation steps. We are building this in small, working milestones.
 
+## Steps 4 and 5 — primality and Euler's phi
+
+Two new sidebar modules connect prime testing and factorization to RSA.
+
+### Primality Tester
+
+- **Trial division** tests 2 and then odd divisors through the integer square
+  root, returning a factor when found. Accepts `0 ≤ n ≤ 10^12`.
+- **Miller–Rabin** displays `n−1 = 2^s × d`, each fixed base and its modular
+  residue chain. The seven bases `2, 325, 9375, 28178, 450775, 9780504,
+  1795265022` are deterministic for `0 ≤ n < 2^64`. Larger inputs are rejected;
+  a single passing base is never described as proof of primality.
+- 0 and 1 are classified as neither prime nor composite. Negative inputs are
+  rejected. Small primes and even composites are decided directly.
+- Presets include 97, 91, 561 (a Carmichael number), 2047 (a strong pseudoprime
+  to base 2), and the large prime 18446744073709551557. The last example uses
+  exact text entry so browser floating-point limits do not change the input.
+- The classification is displayed immediately; Previous / Next / Show all /
+  Start over let you explore its evidence. Trial division stores the first
+  200 checks plus a later factor-discovery check if needed. Omitted checks
+  still execute and the screen explicitly reports the trace reduction.
+
+The fixed-base reference is
+[CP-Algorithms: Primality tests](https://cp-algorithms.com/algebra/primality_tests.html).
+
+### Euler's Phi
+
+Factor a positive integer up to `10^12`, display the successful divisions,
+then apply `result = result // p * (p - 1)` once per distinct prime factor.
+All arithmetic is exact. Repeated prime powers do not repeat a phi update.
+
+Examples: `36 = 2^2 × 3^2` gives `36 → 18 → 12`; `81 = 3^4` gives 54;
+`3233 = 53 × 61` gives `(53−1)(61−1) = 3120`. For `n ≤ 100`, the screen also
+lists and counts the integers from 1 through n that are coprime to n.
+The special case `φ(1) = 1` uses an empty prime-factor product.
+
+### Work limits and testing
+
+Trial division and phi factorization each have a configurable maximum of
+100,000 divisibility checks. There is no wall-clock promise: this is a
+deterministic operation budget. If exhausted, primality is **Unresolved**;
+phi shows known factors and the unresolved cofactor, with no totient answer.
+Some large inputs within the accepted range therefore cannot be completed
+by these bounded trial methods. Miller–Rabin can still classify large inputs
+within its own range but does not generally factor them.
+
+No new dependencies are required. The full suite now contains 41 tests,
+including independent sieve comparisons for 0–3000, direct coprime counting
+for 1–500, pseudoprimes, exact large inputs, budget exhaustion and navigation
+through all four screens. Run the test command below after installing Streamlit.
+
 ## Step 3 — extended Euclid and modular inverse
 
 Choose **Extended Euclid & Inverse** in the sidebar. This screen includes two
@@ -136,10 +187,9 @@ string table cells preserve exact large integers through the browser.
 
 ## Next milestones
 
-1. Add the primality tester after stage review.
-2. Add phi and CRT learning modules.
-3. Connect the algorithms into the RSA Lab.
-4. Add bounded small-key factorization and the classroom demo.
+1. Add the CRT solver after the combined stage review.
+2. Connect the algorithms into the RSA Lab and add bounded small-key factorization.
+3. Polish the frontend, complete the report and prepare the classroom demo.
 
 Educational textbook RSA, when added, is intended for
 learning and must not be used to protect real secrets.
