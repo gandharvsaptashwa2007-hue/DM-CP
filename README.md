@@ -1,7 +1,80 @@
 # Number Theory & RSA Playground
 
 An educational project connecting Unit 5 number theory to RSA through visible
-calculation steps. We are building this in small, working milestones.
+calculation steps. All seven learning modules are implemented; frontend polish
+and final presentation work remain.
+
+## Steps 6 and 7 — CRT, RSA Lab, and Break the Key
+
+### CRT Solver
+
+Enter 2–6 equations `x ≡ a_i (mod m_i)`. Residues may be negative (UI limit
+±10^18); moduli must be pairwise coprime and between 2 and 1,000,000. The
+screen normalizes residues, checks pairwise GCDs, displays `N`, `N_i`, each
+modular inverse and contribution, then verifies the answer against every
+congruence. Products use exact Python integers, including periods above 2^53.
+
+The default `(2 mod 3, 3 mod 5, 2 mod 7)` yields contributions 140, 63 and 30:
+`x = 233 mod 105 = 23`. All solutions are `23 + 105k`, for integer k.
+Non-coprime systems are explicitly unsupported, not incorrectly classified as
+inconsistent. Compatible non-coprime equations require generalized CRT.
+
+### RSA Lab
+
+1. Load the HELLO demo and **Build keys**, or supply distinct primes `p`, `q`
+   from 3 to 1,000,000 and an exponent `1 < e < φ(n)` coprime to φ(n).
+2. Inspect `n`, `φ(n)`, the public/private keys and the extended-Euclid trace
+   behind `d`. **Generate random keys** samples primes with Python `secrets`
+   from three classroom ranges, preferring 65537 when that exponent is valid.
+3. Choose UTF-8 text or Integer mode and **Encrypt message**. Text is encoded
+   as one byte per block, with a 256-byte limit and `n > 255`. Integer mode
+   requires `0 ≤ m < n`. Empty text produces an empty block sequence.
+4. **Decrypt ciphertext** to recover the message, or paste ciphertext from
+   another compatible key. Commas, spaces, newlines and optional outer square
+   brackets are accepted. Blocks must be integers in `[0, n)`; malformed
+   bytes and invalid UTF-8 produce explicit decoding errors.
+5. Select a block and inspect repeated squaring. Decryption also shows the
+   residues modulo p and q and uses the CRT solver to reconstruct the same m.
+
+For `p=61, q=53, e=17`: `n=3233`, `φ(n)=3120`, `d=2753`.
+`HELLO` encodes as `72,69,76,76,79` and encrypts to
+`3000,28,2726,2726,1307`. Both L bytes produce equal ciphertext, illustrating
+the pattern leakage of textbook RSA. Unicode text, whitespace and zero-valued
+integer messages are supported.
+
+Key edits invalidate all dependent messages. Message/mode changes invalidate
+ciphertext and decryption. Editing ciphertext clears the old encryption
+comparison and recovered message. Module navigation preserves independent
+inputs and results; browser sessions are not persistent key storage.
+
+### Break the Key
+
+Load a public-key preset or use **Use RSA Lab public data** to copy only e, n,
+ciphertext and the interpretation mode. The core attack never receives p, q,
+d, a private-key object or the original plaintext. It tries divisors of n,
+validates the discovered prime pair, reconstructs φ(n) and d, and decrypts.
+
+The scope is two distinct odd primes, each at most 1,000,000; `n ≤ 10^12`.
+At most 100,000 candidate checks are allowed. Unsupported factorizations,
+invalid exponents and budget exhaustion are distinguished. An unfinished
+attack returns no private key or plaintext. A recovered key with invalid UTF-8
+still shows the recovered integer blocks and a separate decoding error.
+
+Measured time includes factor search, key recovery and decryption on the
+current machine. The first 200 trial checks and a later successful factor
+check are retained for display; other executed checks are explicitly omitted.
+The larger preset intentionally exceeds this budget. A timeout or exhausted
+budget is not proof of security, and these timings do not predict advanced
+factoring attacks or real 2048-bit RSA performance.
+
+### Validation and demo
+
+The full suite contains **65 tests**, including all integer residues for the
+sample RSA key, Unicode/empty messages, exact byte limits, CRT brute-force
+cross-checks, invalid-key handling, public-only attack recovery and Streamlit
+interactions. See [the demo guide](docs/DEMO.md) for a classroom walkthrough.
+Installation commands below apply to all screens; no new dependencies were
+added for these stages.
 
 ## Steps 4 and 5 — primality and Euler's phi
 
@@ -49,10 +122,10 @@ Some large inputs within the accepted range therefore cannot be completed
 by these bounded trial methods. Miller–Rabin can still classify large inputs
 within its own range but does not generally factor them.
 
-No new dependencies are required. The full suite now contains 41 tests,
-including independent sieve comparisons for 0–3000, direct coprime counting
+No new dependencies were required for these stages. Their checks include
+independent sieve comparisons for 0–3000, direct coprime counting
 for 1–500, pseudoprimes, exact large inputs, budget exhaustion and navigation
-through all four screens. Run the test command below after installing Streamlit.
+through the first four screens. Run the test command below after installing Streamlit.
 
 ## Step 3 — extended Euclid and modular inverse
 
@@ -187,9 +260,10 @@ string table cells preserve exact large integers through the browser.
 
 ## Next milestones
 
-1. Add the CRT solver after the combined stage review.
-2. Connect the algorithms into the RSA Lab and add bounded small-key factorization.
-3. Polish the frontend, complete the report and prepare the classroom demo.
+1. Review the completed core modules and refine the frontend.
+2. Complete the academic report, screenshots and presentation.
+3. Optionally deploy the learning app after local review.
 
-Educational textbook RSA, when added, is intended for
-learning and must not be used to protect real secrets.
+This is unpadded textbook RSA for learning, not a secure encryption service.
+Real encryption requires vetted implementations and secure padding such as
+RSA-OAEP. Do not enter passwords or private messages into this demonstration.
