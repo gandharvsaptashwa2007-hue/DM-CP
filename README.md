@@ -3,6 +3,27 @@
 An educational project connecting Unit 5 number theory to RSA through visible
 calculation steps. We are building this in small, working milestones.
 
+## Step 3 — extended Euclid and modular inverse
+
+Choose **Extended Euclid & Inverse** in the sidebar. This screen includes two
+modes: signed-integer Bézout identities, and modular inverses with modulus > 1.
+Forward playback shows quotient, remainder and coefficient updates. At the end,
+the backward trace substitutes each remainder into earlier divisions, collects
+coefficients, and restores the signs of the original inputs.
+
+Try the RSA example: `17 × (-367) + 3120 × 2 = 1`. Reducing `-367` modulo
+`3120` gives the inverse `2753`. The app also verifies `(17 × 2753) mod 3120 = 1`.
+For `6 mod 9`, there is no inverse, but the GCD and Bézout calculation remain
+visible. Seven presets include negative and zero inputs. Changing inputs or
+mode clears stale results; switching modules preserves each module's own
+inputs, playback position and result in the current browser session.
+
+The pure `core/back_substitution.py` helper reconstructs the backward trace
+from the existing extended-GCD result. Equal numerical remainders are tracked
+by their indices so they are not confused. `ui/inputs.py` shares integer
+validation across the screens. No additional dependencies are needed for this
+stage; the installation commands below apply to both screens.
+
 ## Step 2 — interactive GCD Visualizer
 
 The first browser screen includes exact integer inputs, five examples, Previous /
@@ -67,9 +88,9 @@ Implemented using Python's standard library:
 
 All functions return immutable dataclass results with a `.value` field. GCD,
 extended GCD and modular power have `.steps`; inverse has `.euclid.steps`.
-Original inputs are preserved. Trace values are numbers that the future UI can
-display as equations or tables. The extended trace records coefficient updates;
-a separate back-substitution presentation will be added with the interface.
+Original inputs are preserved. Trace values are numbers that the UI displays
+as equations or tables. The extended trace records coefficient updates;
+the inverse screen also presents backward substitution.
 
 ### Run the examples
 
@@ -115,8 +136,8 @@ string table cells preserve exact large integers through the browser.
 
 ## Next milestones
 
-1. Add the extended Euclid / modular inverse screen after stage review.
-2. Add primality, phi and CRT learning modules.
+1. Add the primality tester after stage review.
+2. Add phi and CRT learning modules.
 3. Connect the algorithms into the RSA Lab.
 4. Add bounded small-key factorization and the classroom demo.
 

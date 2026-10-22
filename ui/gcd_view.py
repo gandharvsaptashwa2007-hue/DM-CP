@@ -1,12 +1,10 @@
 """Interactive Euclidean algorithm with session-local playback."""
 
-import re
-
 import streamlit as st
 
 from core import gcd
+from ui.inputs import parse_integer
 
-LIMIT = 10**18
 PRESETS = {
     "Classic example · 252 and 105": (252, 105),
     "Coprime numbers · 17 and 31": (17, 31),
@@ -14,20 +12,6 @@ PRESETS = {
     "Zero input · 42 and 0": (42, 0),
     "Both zero · 0 and 0": (0, 0),
 }
-
-
-def parse_integer(text: str, label: str) -> int:
-    """Parse exact decimal integers without JavaScript number precision loss."""
-    value = text.strip()
-    if not re.fullmatch(r"[+-]?[0-9]+", value):
-        raise ValueError(f"{label}: enter a whole number, such as 252 or -105.")
-    # Bound digit count before conversion as well as the resulting magnitude.
-    if len(value.lstrip("+-").lstrip("0")) > 19:
-        raise ValueError(f"{label}: use a value between -10¹⁸ and 10¹⁸.")
-    number = int(value)
-    if abs(number) > LIMIT:
-        raise ValueError(f"{label}: use a value between -10¹⁸ and 10¹⁸.")
-    return number
 
 
 def clear_result() -> None:
