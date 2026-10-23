@@ -68,7 +68,7 @@ def render_inverse():
     st.caption("EXPERIMENT 02 / EXTENDED EUCLID & MODULAR INVERSE")
     st.title("Find the numbers behind the GCD")
     st.write("Express the GCD as a combination of your inputs, then discover when that identity gives a modular inverse.")
-    left, right = st.columns([2, 3], gap="large")
+    left, right = st.container(), st.container()
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="inverse_preset")
         st.button("Load example", key="inverse_load", on_click=load_example)
@@ -80,7 +80,7 @@ def render_inverse():
         if st.session_state.inverse_error:
             st.error(st.session_state.inverse_error)
     with right:
-        with st.expander("How do coefficients lead to an inverse?", expanded=True):
+        with st.expander("How do coefficients lead to an inverse?", expanded=False):
             st.latex(r"ax + by = \gcd(a,b)")
             st.write("Extended Euclid tracks coefficients x and y alongside the usual divisions. At every step, the remainder is still a combination of the original signed inputs.")
             st.latex(r"ax + my = 1 \quad\Longrightarrow\quad ax \equiv 1 \pmod m")

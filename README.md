@@ -267,3 +267,24 @@ string table cells preserve exact large integers through the browser.
 This is unpadded textbook RSA for learning, not a secure encryption service.
 Real encryption requires vetted implementations and secure padding such as
 RSA-OAEP. Do not enter passwords or private messages into this demonstration.
+
+## UI redesign
+
+The app opens on a dashboard with seven keyboard-accessible experiment cards.
+The persistent sidebar switches between tools; desktop workspaces use a 70/30
+split with a separate history and formula panel. On small screens, the panels
+stack vertically and the sidebar can be opened from the upper-left control.
+
+The visual system uses an off-white background, white cards, indigo actions and
+teal result highlights. Cards lift on hover; panels enter with a short transition.
+The operating system's reduced-motion preference disables these effects.
+
+Each module keeps up to 20 result summaries in the current Streamlit session.
+Changing inputs or switching modules preserves history, while playback does not
+add duplicate entries. **Clear history** affects only the current module's feed.
+History is temporary, not an account or saved database. RSA history records block
+counts rather than message contents. Incomplete computations are labeled as such.
+
+Shared styles live in `ui/theme.css`, the dashboard and journal in `ui/design.py`,
+and the Streamlit light theme in `.streamlit/config.toml`. No extra dependencies
+are needed. Restart Streamlit after pulling this update to load theme settings.

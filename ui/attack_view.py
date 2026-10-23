@@ -64,7 +64,7 @@ def render_attack():
     st.caption("EXPERIMENT 07 / BREAK THE KEY")
     st.title("Recover a small RSA key from public data")
     st.write("The attack receives only e, n and ciphertext. It must discover the factors of n before it can reconstruct the private exponent.")
-    left, right = st.columns([2, 3], gap="large")
+    left, right = st.container(), st.container()
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="attack_preset")
         st.button("Load public-key example", key="attack_load", on_click=load_example)

@@ -53,7 +53,7 @@ def render_crt():
     st.caption("EXPERIMENT 05 / CHINESE REMAINDER THEOREM")
     st.title("One number, several remainders")
     st.write("Combine congruences into a single solution and verify it against every original condition.")
-    left, right = st.columns([2, 3], gap="large")
+    left, right = st.container(), st.container()
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="crt_preset")
         st.button("Load example", key="crt_load", on_click=load_example)
@@ -68,7 +68,7 @@ def render_crt():
         if st.session_state.crt_error:
             st.error(st.session_state.crt_error)
     with right:
-        with st.expander("How the pieces combine", expanded=True):
+        with st.expander("How the pieces combine", expanded=False):
             st.latex(r"N=\prod_i m_i,\quad N_i=N/m_i,\quad y_i=N_i^{-1}\pmod{m_i}")
             st.latex(r"x=\left(\sum_i a_iN_iy_i\right)\bmod N")
             st.write("Nᵢ is divisible by every other modulus. Multiplying it by its inverse modulo mᵢ makes it equal to 1 for this equation and 0 for the others. Each term therefore contributes exactly its own residue.")

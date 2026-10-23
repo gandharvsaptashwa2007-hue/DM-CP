@@ -52,7 +52,7 @@ def render_primality():
     st.caption("EXPERIMENT 03 / PRIMALITY TESTING")
     st.title("Is this number prime?")
     st.write("Inspect divisors or follow modular residue chains to see the evidence behind the answer.")
-    left, right = st.columns([2, 3], gap="large")
+    left, right = st.container(), st.container()
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="prime_preset")
         st.button("Load example", key="prime_load", on_click=load_example)
@@ -67,7 +67,7 @@ def render_primality():
         if st.session_state.prime_error:
             st.error(st.session_state.prime_error)
     with right:
-        with st.expander("Two approaches to the same question", expanded=True):
+        with st.expander("Two approaches to the same question", expanded=False):
             st.write("Trial division checks 2, then odd candidate divisors up to √n. If n is composite, at least one factor is no larger than √n. A complete search without a factor proves primality.")
             st.latex(r"n-1 = 2^s d \quad (d\text{ odd})")
             st.write("For odd n, Miller–Rabin starts with x = aᵈ mod n. A base passes if x is 1 or n−1, or if up to s−1 repeated squarings reach n−1. Failure proves compositeness. Passing just one base does not prove primality.")

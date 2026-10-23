@@ -44,7 +44,7 @@ def render_totient():
     st.caption("EXPERIMENT 04 / EULER’S TOTIENT")
     st.title("Count the numbers coprime to n")
     st.write("Factor your number, use each distinct prime once, and watch Euler’s phi formula take shape.")
-    left, right = st.columns([2, 3], gap="large")
+    left, right = st.container(), st.container()
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="phi_preset")
         st.button("Load example", key="phi_load", on_click=load_example)
@@ -58,7 +58,7 @@ def render_totient():
         if st.session_state.phi_error:
             st.error(st.session_state.phi_error)
     with right:
-        with st.expander("Why does the prime-factor formula work?", expanded=True):
+        with st.expander("Why does the prime-factor formula work?", expanded=False):
             st.latex(r"\varphi(n) = n\prod_{p\mid n}\left(1-\frac{1}{p}\right)")
             st.write("A number is coprime to n if it shares none of n's prime factors. The product counts the integers remaining after multiples of each distinct prime are excluded, accounting for overlaps. A repeated prime factor is used only once in the product.")
             st.write("The calculation uses result ÷ p × (p−1) with exact integers. φ(1) = 1 by convention, consistent with gcd(1,1) = 1.")

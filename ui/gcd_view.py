@@ -53,7 +53,7 @@ def render_gcd() -> None:
     st.title("Find the greatest common divisor")
     st.write("Divide, keep the remainder, repeat. See why this simple pattern finds the largest number that divides both inputs.")
 
-    inputs, lesson = st.columns([2, 3], gap="large")
+    inputs, lesson = st.container(), st.container()
     with inputs:
         with st.container(border=True):
             st.subheader("Choose your numbers")
@@ -67,7 +67,7 @@ def render_gcd() -> None:
                 st.error(st.session_state.gcd_error)
 
     with lesson:
-        with st.expander("Why does Euclid’s algorithm work?", expanded=True):
+        with st.expander("Why does Euclid’s algorithm work?", expanded=False):
             st.latex(r"a = bq + r \quad\Longrightarrow\quad \gcd(a,b) = \gcd(b,r)")
             st.write("A number dividing both a and b also divides a − bq, which is the remainder r. Conversely, a number dividing b and r divides bq + r = a. Each replacement therefore keeps exactly the same common divisors.")
             st.write("When the remainder reaches zero, the current divisor is the GCD. We use absolute values so the answer is nonnegative.")
