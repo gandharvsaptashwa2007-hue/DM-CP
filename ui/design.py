@@ -45,8 +45,7 @@ def choose_page():
 
 
 def dashboard():
-    st.html('<div class="eyebrow">EXPLORE · EXPERIMENT · UNDERSTAND</div>')
-    st.title("Small experiments. Big ideas.")
+    st.subheader("Small experiments. Big ideas.")
     st.write("Your number theory playground. Start with a remainder, follow the steps, and build your way to RSA.")
     st.html('<div class="learning-strip"><span>01 / Foundations</span><b>GCD & inverses</b><span>→</span><b>Primes & congruences</b><span>→</span><b>Encryption & discovery</b></div>')
     st.subheader("Choose an experiment")

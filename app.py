@@ -29,9 +29,11 @@ for key in (*widget_keys, *(f"crt_{field}_{i}" for field in ("a", "m") for i in 
 pages = ("Home", *MODULES)
 module = st.session_state.setdefault("module", "Home")
 navigate(module)
-st.title("Modular Minds")
+brand, controls = st.columns([1, 1], gap="medium")
+with brand:
+    st.html('<div class="brand"><h1>Modular Minds</h1><p>Explore · Experiment · Understand</p></div>')
 
-with st.container(key="page_navigation"):
+with controls, st.container(key="page_navigation"):
     location, home, previous, following = st.columns([8, 1, 1, 1])
     index = st.session_state.page_cursor
     previous.button("←", key="page_previous", disabled=index == 0,
