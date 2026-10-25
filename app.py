@@ -15,7 +15,7 @@ from ui.design import MODULES, apply_design, dashboard, results_pane, navigate, 
 st.set_page_config(page_title="Modular Minds", page_icon="🧮", layout="wide")
 apply_design()
 for key in list(st.session_state):
-    if key.startswith(("challenge_", "explore_")):
+    if key.startswith(("challenge_answer_", "challenge_hint_", "challenge_solution_", "explore_")):
         st.session_state[key] = st.session_state[key]
 
 # Preserve each screen's widget values when its widgets are temporarily absent.
