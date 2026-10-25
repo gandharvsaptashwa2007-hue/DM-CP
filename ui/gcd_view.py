@@ -42,7 +42,7 @@ def move(position: int) -> None:
     st.session_state.gcd_position = position
 
 
-def render_gcd() -> None:
+def render_gcd(theory) -> None:
     for key, default in {
         "gcd_a": "252", "gcd_b": "105", "gcd_result": None,
         "gcd_position": 0, "gcd_error": None,
@@ -53,7 +53,7 @@ def render_gcd() -> None:
     st.title("Find the greatest common divisor")
     st.write("Divide, keep the remainder, repeat. See why this simple pattern finds the largest number that divides both inputs.")
 
-    inputs, lesson = st.container(), st.container()
+    inputs, lesson = st.container(), theory
     with inputs:
         with st.container(border=True):
             st.subheader("Choose your numbers")

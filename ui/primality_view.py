@@ -44,7 +44,7 @@ def calculate():
         st.session_state.prime_error = str(error)
 
 
-def render_primality():
+def render_primality(theory):
     for key, value in {"prime_n": "97", "prime_method": METHODS[0],
                        "prime_budget": DEFAULT_BUDGET, "prime_result": None,
                        "prime_error": None, "prime_position": 0}.items():
@@ -52,7 +52,7 @@ def render_primality():
     st.caption("EXPERIMENT 03 / PRIMALITY TESTING")
     st.title("Is this number prime?")
     st.write("Inspect divisors or follow modular residue chains to see the evidence behind the answer.")
-    left, right = st.container(), st.container()
+    left, right = st.container(), theory
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="prime_preset")
         st.button("Load example", key="prime_load", on_click=load_example)

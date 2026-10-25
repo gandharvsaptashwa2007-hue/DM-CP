@@ -21,7 +21,27 @@ def apply_design():
 
 
 def navigate(name):
+    visits = st.session_state.setdefault("page_visits", ["Home"])
+    cursor = st.session_state.setdefault("page_cursor", 0)
+    if visits[cursor] != name:
+        del visits[cursor + 1:]
+        visits.append(name)
+        st.session_state.page_cursor = len(visits) - 1
     st.session_state.module = name
+    st.session_state.page_picker = name
+
+
+def travel(offset):
+    cursor = st.session_state.page_cursor + offset
+    visits = st.session_state.page_visits
+    if 0 <= cursor < len(visits):
+        st.session_state.page_cursor = cursor
+        st.session_state.module = visits[cursor]
+        st.session_state.page_picker = visits[cursor]
+
+
+def choose_page():
+    navigate(st.session_state.page_picker)
 
 
 def dashboard():
@@ -78,11 +98,13 @@ def capture_results(slug):
 def results_pane(name):
     slug, _, _, formula = MODULES[name]
     capture_results(slug)
+    if not st.session_state.get(f"history_{slug}"):
+        return
     with st.container(key="results_pane"):
         st.subheader("History & results")
         st.caption("This session · newest first")
         history = st.session_state.get(f"history_{slug}", [])
-        with st.container(height=330, border=False):
+        with st.container(height=180, border=False):
             if not history:
                 st.html('<div class="empty-history"><b>Your discoveries start here</b><p>Run an experiment to save a result. Move through the steps at your own pace.</p></div>')
             for index, entry in enumerate(history):

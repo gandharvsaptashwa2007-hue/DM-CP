@@ -56,7 +56,7 @@ def attack():
         st.session_state.attack_error = str(error)
 
 
-def render_attack():
+def render_attack(theory):
     for key, value in {"attack_e": "17", "attack_n": "3233", "attack_ciphertext": "3000, 28, 2726, 2726, 1307",
                        "attack_mode": MESSAGE_MODES[0], "attack_budget": DEFAULT_BUDGET,
                        "attack_result": None, "attack_error": None, "attack_position": 0}.items():
@@ -64,7 +64,7 @@ def render_attack():
     st.caption("EXPERIMENT 07 / BREAK THE KEY")
     st.title("Recover a small RSA key from public data")
     st.write("The attack receives only e, n and ciphertext. It must discover the factors of n before it can reconstruct the private exponent.")
-    left, right = st.container(), st.container()
+    left, right = st.container(), theory
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="attack_preset")
         st.button("Load public-key example", key="attack_load", on_click=load_example)

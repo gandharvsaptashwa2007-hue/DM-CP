@@ -44,7 +44,7 @@ def calculate():
         st.session_state.crt_error = str(error)
 
 
-def render_crt():
+def render_crt(theory):
     for key, value in {"crt_count": 3, "crt_result": None, "crt_error": None, "crt_position": 0}.items():
         st.session_state.setdefault(key, value)
     for index, (residue, modulus) in enumerate(((2, 3), (3, 5), (2, 7), (1, 11), (1, 13), (1, 17))):
@@ -53,7 +53,7 @@ def render_crt():
     st.caption("EXPERIMENT 05 / CHINESE REMAINDER THEOREM")
     st.title("One number, several remainders")
     st.write("Combine congruences into a single solution and verify it against every original condition.")
-    left, right = st.container(), st.container()
+    left, right = st.container(), theory
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="crt_preset")
         st.button("Load example", key="crt_load", on_click=load_example)

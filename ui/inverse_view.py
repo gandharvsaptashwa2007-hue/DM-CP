@@ -57,7 +57,7 @@ def expression(terms, remainders):
     return " + ".join(f"({coefficient}) × {remainders[index]}" for index, coefficient in terms) or "0"
 
 
-def render_inverse():
+def render_inverse(theory):
     for key, value in {
         "inverse_a": "17", "inverse_b": "3120", "inverse_mode": MODES[0],
         "inverse_result": None, "inverse_value": None, "inverse_error": None,
@@ -68,7 +68,7 @@ def render_inverse():
     st.caption("EXPERIMENT 02 / EXTENDED EUCLID & MODULAR INVERSE")
     st.title("Find the numbers behind the GCD")
     st.write("Express the GCD as a combination of your inputs, then discover when that identity gives a modular inverse.")
-    left, right = st.container(), st.container()
+    left, right = st.container(), theory
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="inverse_preset")
         st.button("Load example", key="inverse_load", on_click=load_example)

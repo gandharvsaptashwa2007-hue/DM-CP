@@ -105,7 +105,7 @@ def decrypt():
         st.session_state.rsa_message_error = str(error)
 
 
-def render_rsa():
+def render_rsa(theory):
     defaults = {"rsa_p": "61", "rsa_q": "53", "rsa_e": "17", "rsa_size": "Small", "rsa_keys": None,
                 "rsa_key_error": None, "rsa_message_error": None, "rsa_mode": MESSAGE_MODES[0], "rsa_message": "HELLO",
                 "rsa_ciphertext": "", "rsa_packet": None, "rsa_recovered": None, "rsa_trace_kind": "Encryption",
@@ -193,7 +193,7 @@ def render_rsa():
             with st.expander("Check the same block using CRT", expanded=True):
                 st.code(f"c^d mod p = {mp}\nc^d mod q = {mq}\nCRT combines these residues into {combined.value} mod {combined.period}\nDirect decryption gives {data['plain'][index]}", language=None)
                 st.table([{"Modulus": str(s.modulus), "Residue": str(s.residue), "Partial product": str(s.partial_product), "Inverse": str(s.inverse.value), "Contribution": str(s.contribution)} for s in combined.steps])
-    with st.expander("Why does decryption restore every valid message block?"):
+    with theory, st.expander("Why does decryption restore every valid message block?"):
         st.write("ed = 1 + kφ(n). Euler’s theorem proves m^(ed) ≡ m mod n when m is coprime to n. For all valid message blocks, including multiples of p or q, use Fermat’s theorem (or the zero residue) separately modulo each prime, then CRT to recover the unique residue modulo n.")
         st.write("Real systems use vetted cryptographic libraries and padding such as RSA-OAEP. This demonstration intentionally exposes the unpadded arithmetic.")
     st.button("Reset lab", key="rsa_reset", on_click=load_demo)

@@ -37,14 +37,14 @@ def factor_expression(factors):
     return " × ".join(str(p) if exponent == 1 else f"{p}^{exponent}" for p, exponent in factors) or "1"
 
 
-def render_totient():
+def render_totient(theory):
     for key, value in {"phi_n": "36", "phi_budget": DEFAULT_BUDGET, "phi_result": None,
                        "phi_error": None, "phi_position": 0}.items():
         st.session_state.setdefault(key, value)
     st.caption("EXPERIMENT 04 / EULER’S TOTIENT")
     st.title("Count the numbers coprime to n")
     st.write("Factor your number, use each distinct prime once, and watch Euler’s phi formula take shape.")
-    left, right = st.container(), st.container()
+    left, right = st.container(), theory
     with left, st.container(border=True):
         st.selectbox("Example", list(PRESETS), key="phi_preset")
         st.button("Load example", key="phi_load", on_click=load_example)
