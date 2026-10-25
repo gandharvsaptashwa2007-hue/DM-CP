@@ -1,4 +1,7 @@
 :root { --ink: #1F2937; --muted: #6B7280; --indigo: #4F46E5; --teal: #14B8A6; }
+.residue-track { display: flex; flex-wrap: wrap; gap: 6px; }
+.residue { display: inline-flex; justify-content: center; align-items: center; width: 30px; height: 30px; border-radius: 50%; background: #F3F4F6; color: #1F2937; }
+.residue.selected { background: #4F46E5; color: white; outline: 2px solid #14B8A6; outline-offset: 2px; font-weight: 700; }
 .st-key-gcd_compact_inputs { max-width: 720px; }
 .stApp { background: #F9FAFB; color: var(--ink); }
 html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif; }

@@ -9,10 +9,14 @@ from ui.totient_view import render_totient
 from ui.crt_view import render_crt
 from ui.rsa_view import render_rsa
 from ui.attack_view import render_attack
+from ui.explanation_play import render_explanation_play
 from ui.design import MODULES, apply_design, dashboard, results_pane, navigate, travel, choose_page
 
 st.set_page_config(page_title="Modular Minds", page_icon="🧮", layout="wide")
 apply_design()
+for key in list(st.session_state):
+    if key.startswith(("challenge_", "explore_")):
+        st.session_state[key] = st.session_state[key]
 
 # Preserve each screen's widget values when its widgets are temporarily absent.
 # Streamlit otherwise cleans up those keys on navigation, leaving old results
@@ -54,5 +58,7 @@ else:
          "Primality Tester": render_primality, "Euler’s Phi": render_totient,
          "CRT Solver": render_crt, "RSA Lab": render_rsa,
          "Break the Key": render_attack}[module](theory)
+    with theory:
+        render_explanation_play(module, MODULES[module][0])
     with history:
         results_pane(module)
