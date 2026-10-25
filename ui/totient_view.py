@@ -58,7 +58,8 @@ def render_totient(theory):
         if st.session_state.phi_error:
             st.error(st.session_state.phi_error)
     with right:
-        with st.expander("Why does the prime-factor formula work?", expanded=False):
+        with st.container():
+            st.subheader("Why does the prime-factor formula work?")
             st.latex(r"\varphi(n) = n\prod_{p\mid n}\left(1-\frac{1}{p}\right)")
             st.write("A number is coprime to n if it shares none of n's prime factors. The product counts the integers remaining after multiples of each distinct prime are excluded, accounting for overlaps. A repeated prime factor is used only once in the product.")
             st.write("The calculation uses result ÷ p × (p−1) with exact integers. φ(1) = 1 by convention, consistent with gcd(1,1) = 1.")

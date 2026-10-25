@@ -1,7 +1,13 @@
 :root { --ink: #1F2937; --muted: #6B7280; --indigo: #4F46E5; --teal: #14B8A6; }
 .stApp { background: #F9FAFB; color: var(--ink); }
 html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif; }
-.block-container { max-width: 1800px; padding: 4rem 3rem 3rem; }
+.block-container { max-width: 1800px; padding: 3.5rem 3rem 3rem; }
+.st-key-page_navigation { max-width: 560px; }
+.st-key-page_navigation [data-testid="stHorizontalBlock"] { gap: .5rem; }
+.st-key-page_navigation [data-testid="stColumn"]:first-child { flex: 1 1 240px; min-width: 0; }
+.st-key-page_navigation [data-testid="stColumn"]:not(:first-child) { flex: 0 0 48px; min-width: 48px; }
+.st-key-theory_panel { background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1rem; }
+.st-key-results_pane { padding: .8rem !important; }
 .st-key-page_navigation { margin: .25rem 0 .75rem; }
 .st-key-page_navigation [data-testid="stCaptionContainer"] { text-align: left; padding-top: .5rem; }
 .st-key-page_navigation button { border: 0; background: transparent; min-width: 40px; }
@@ -51,5 +57,5 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px
 .formula-card { background: #EEF2FF; border-radius: 10px; color: #4338CA; padding: 1rem; font-size: .95rem; overflow-wrap: anywhere; }
 @keyframes arrive { from { opacity: .5; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 900px) { .st-key-workspace, .st-key-results_pane { padding: 1rem; } [data-testid="stHorizontalBlock"]:has(> [data-testid="stColumn"] .st-key-workspace) { flex-wrap: wrap; } [data-testid="stHorizontalBlock"]:has(> [data-testid="stColumn"] .st-key-workspace) > [data-testid="stColumn"] { width: 100%; flex: 1 1 100%; } }
-@media (max-width: 640px) { .block-container { padding: 5rem 1rem 1.5rem; } [class*="st-key-card_"] button { min-height: 180px; } }
+@media (max-width: 640px) { .block-container { padding: 3.5rem 1rem 1.5rem; } [class*="st-key-card_"] button { min-height: 180px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } [class*="st-key-card_"] button:hover { transform: none; } }

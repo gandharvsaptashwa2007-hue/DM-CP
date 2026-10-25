@@ -104,14 +104,10 @@ def results_pane(name):
         st.subheader("History & results")
         st.caption("This session · newest first")
         history = st.session_state.get(f"history_{slug}", [])
-        with st.container(height=180, border=False):
+        with st.container(height=130, border=False):
             if not history:
                 st.html('<div class="empty-history"><b>Your discoveries start here</b><p>Run an experiment to save a result. Move through the steps at your own pace.</p></div>')
             for index, entry in enumerate(history):
                 st.html(f'<div class="history-entry"><small>{"LATEST RESULT" if index == 0 else "PREVIOUS RESULT"}</small><p>{escape(entry)}</p></div>')
         st.button("Clear history", key=f"clear_history_{slug}", disabled=not history,
                   on_click=lambda: st.session_state.update({f"history_{slug}": []}))
-        st.divider()
-        st.caption("QUICK REFERENCE")
-        st.html(f'<div class="formula-card">{escape(formula)}</div>')
-        st.caption("Try an example first. Then change one input and compare the results. History keeps the latest 20 calculations for this module.")

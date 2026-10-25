@@ -68,7 +68,8 @@ def render_crt(theory):
         if st.session_state.crt_error:
             st.error(st.session_state.crt_error)
     with right:
-        with st.expander("How the pieces combine", expanded=False):
+        with st.container():
+            st.subheader("How the pieces combine")
             st.latex(r"N=\prod_i m_i,\quad N_i=N/m_i,\quad y_i=N_i^{-1}\pmod{m_i}")
             st.latex(r"x=\left(\sum_i a_iN_iy_i\right)\bmod N")
             st.write("Nᵢ is divisible by every other modulus. Multiplying it by its inverse modulo mᵢ makes it equal to 1 for this equation and 0 for the others. Each term therefore contributes exactly its own residue.")

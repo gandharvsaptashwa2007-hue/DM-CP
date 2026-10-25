@@ -67,7 +67,8 @@ def render_primality(theory):
         if st.session_state.prime_error:
             st.error(st.session_state.prime_error)
     with right:
-        with st.expander("Two approaches to the same question", expanded=False):
+        with st.container():
+            st.subheader("Two approaches to the same question")
             st.write("Trial division checks 2, then odd candidate divisors up to √n. If n is composite, at least one factor is no larger than √n. A complete search without a factor proves primality.")
             st.latex(r"n-1 = 2^s d \quad (d\text{ odd})")
             st.write("For odd n, Miller–Rabin starts with x = aᵈ mod n. A base passes if x is 1 or n−1, or if up to s−1 repeated squarings reach n−1. Failure proves compositeness. Passing just one base does not prove primality.")

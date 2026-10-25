@@ -80,7 +80,8 @@ def render_inverse(theory):
         if st.session_state.inverse_error:
             st.error(st.session_state.inverse_error)
     with right:
-        with st.expander("How do coefficients lead to an inverse?", expanded=False):
+        with st.container():
+            st.subheader("How do coefficients lead to an inverse?")
             st.latex(r"ax + by = \gcd(a,b)")
             st.write("Extended Euclid tracks coefficients x and y alongside the usual divisions. At every step, the remainder is still a combination of the original signed inputs.")
             st.latex(r"ax + my = 1 \quad\Longrightarrow\quad ax \equiv 1 \pmod m")

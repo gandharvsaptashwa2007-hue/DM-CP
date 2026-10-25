@@ -29,7 +29,6 @@ for key in (*widget_keys, *(f"crt_{field}_{i}" for field in ("a", "m") for i in 
 pages = ("Home", *MODULES)
 module = st.session_state.setdefault("module", "Home")
 navigate(module)
-st.html('<div class="eyebrow">NUMBER THEORY & CRYPTOGRAPHY</div>')
 st.title("Modular Minds")
 
 with st.container(key="page_navigation"):
@@ -47,7 +46,7 @@ if module == "Home":
 else:
     workspace, history = st.columns([7, 3], gap="large")
     with history:
-        theory = st.container()
+        theory = st.container(key="theory_panel")
     with workspace, st.container(key="workspace"):
         {"GCD Visualizer": render_gcd, "Extended Euclid & Inverse": render_inverse,
          "Primality Tester": render_primality, "Euler’s Phi": render_totient,
