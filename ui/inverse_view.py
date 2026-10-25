@@ -70,11 +70,13 @@ def render_inverse(theory):
     st.write("Express the GCD as a combination of your inputs, then discover when that identity gives a modular inverse.")
     left, right = st.container(), theory
     with left, st.container(border=True):
-        st.selectbox("Example", list(PRESETS), key="inverse_preset")
-        st.button("Load example", key="inverse_load", on_click=load_example)
+        example, load = st.columns([3, 2], vertical_alignment="bottom")
+        example.selectbox("Example", list(PRESETS), key="inverse_preset")
+        load.button("Load example", key="inverse_load", on_click=load_example)
         st.radio("Calculation", MODES, key="inverse_mode", on_change=clear_result)
-        st.text_input("First integer (a)", key="inverse_a", max_chars=22, on_change=clear_result)
-        st.text_input("Second integer (b) / modulus (m)", key="inverse_b", max_chars=22, on_change=clear_result)
+        first, second = st.columns(2)
+        first.text_input("First integer (a)", key="inverse_a", max_chars=22, on_change=clear_result)
+        second.text_input("Second integer (b) / modulus (m)", key="inverse_b", max_chars=22, on_change=clear_result)
         st.caption("Exact whole numbers within ±10¹⁸. Inverse mode requires m > 1.")
         st.button("Calculate", key="inverse_calculate", type="primary", on_click=calculate)
         if st.session_state.inverse_error:

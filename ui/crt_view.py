@@ -55,8 +55,9 @@ def render_crt(theory):
     st.write("Combine congruences into a single solution and verify it against every original condition.")
     left, right = st.container(), theory
     with left, st.container(border=True):
-        st.selectbox("Example", list(PRESETS), key="crt_preset")
-        st.button("Load example", key="crt_load", on_click=load_example)
+        example, load = st.columns([3, 2], vertical_alignment="bottom")
+        example.selectbox("Example", list(PRESETS), key="crt_preset")
+        load.button("Load example", key="crt_load", on_click=load_example)
         st.number_input("Number of equations", min_value=2, max_value=6, key="crt_count", on_change=clear_result)
         for i in range(st.session_state.crt_count):
             st.caption(f"Equation {i + 1}: x ≡ residue (mod modulus)")

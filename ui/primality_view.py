@@ -54,8 +54,9 @@ def render_primality(theory):
     st.write("Inspect divisors or follow modular residue chains to see the evidence behind the answer.")
     left, right = st.container(), theory
     with left, st.container(border=True):
-        st.selectbox("Example", list(PRESETS), key="prime_preset")
-        st.button("Load example", key="prime_load", on_click=load_example)
+        example, load = st.columns([3, 2], vertical_alignment="bottom")
+        example.selectbox("Example", list(PRESETS), key="prime_preset")
+        load.button("Load example", key="prime_load", on_click=load_example)
         st.radio("Method", METHODS, key="prime_method", on_change=clear_result)
         st.text_input("Number (n)", key="prime_n", max_chars=24, on_change=clear_result)
         st.caption("Trial division: 0 to 10¹². Miller–Rabin: 0 ≤ n < 2⁶⁴.")

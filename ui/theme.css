@@ -8,7 +8,11 @@ html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif;
 .brand p { margin: .3rem 0 .7rem; color: #4F46E5; font-size: .85rem; letter-spacing: .07em; }
 .st-key-page_navigation { margin-left: auto !important; }
 .st-key-page_navigation button p { white-space: nowrap; }
-.st-key-page_navigation { max-width: 560px; }
+.st-key-page_navigation { max-width: 440px; }
+.st-key-workspace [data-testid="stSelectbox"] { max-width: 380px; }
+.st-key-workspace [data-testid="stTextInput"], .st-key-workspace [data-testid="stNumberInput"] { max-width: 340px; }
+.st-key-workspace [data-testid="stHorizontalBlock"]:has([data-testid="stTextInput"]) { max-width: 720px; }
+.st-key-workspace [data-testid="stHorizontalBlock"]:has([data-testid="stSelectbox"]) { max-width: 640px; }
 .st-key-page_navigation [data-testid="stHorizontalBlock"] { gap: .5rem; }
 .st-key-page_navigation [data-testid="stColumn"]:first-child { flex: 1 1 240px; min-width: 0; }
 .st-key-page_navigation [data-testid="stColumn"]:not(:first-child) { flex: 0 0 48px; min-width: 48px; }

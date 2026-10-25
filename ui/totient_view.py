@@ -46,8 +46,9 @@ def render_totient(theory):
     st.write("Factor your number, use each distinct prime once, and watch Euler’s phi formula take shape.")
     left, right = st.container(), theory
     with left, st.container(border=True):
-        st.selectbox("Example", list(PRESETS), key="phi_preset")
-        st.button("Load example", key="phi_load", on_click=load_example)
+        example, load = st.columns([3, 2], vertical_alignment="bottom")
+        example.selectbox("Example", list(PRESETS), key="phi_preset")
+        load.button("Load example", key="phi_load", on_click=load_example)
         st.text_input("Positive integer (n)", key="phi_n", max_chars=22, on_change=clear_result)
         st.caption("Accepts 1 ≤ n ≤ 10¹².")
         with st.expander("Factorization work limit"):

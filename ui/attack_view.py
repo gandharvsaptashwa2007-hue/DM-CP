@@ -66,11 +66,13 @@ def render_attack(theory):
     st.write("The attack receives only e, n and ciphertext. It must discover the factors of n before it can reconstruct the private exponent.")
     left, right = st.container(), theory
     with left, st.container(border=True):
-        st.selectbox("Example", list(PRESETS), key="attack_preset")
-        st.button("Load public-key example", key="attack_load", on_click=load_example)
+        example, load = st.columns([3, 2], vertical_alignment="bottom")
+        example.selectbox("Example", list(PRESETS), key="attack_preset")
+        load.button("Load public-key example", key="attack_load", on_click=load_example)
         st.button("Use RSA Lab public data", key="attack_import", on_click=import_public_data)
-        st.text_input("Public exponent e", key="attack_e", max_chars=16, on_change=clear_result)
-        st.text_input("Public modulus n", key="attack_n", max_chars=16, on_change=clear_result)
+        exponent, modulus = st.columns(2)
+        exponent.text_input("Public exponent e", key="attack_e", max_chars=16, on_change=clear_result)
+        modulus.text_input("Public modulus n", key="attack_n", max_chars=16, on_change=clear_result)
         st.radio("Interpret recovered blocks as", MESSAGE_MODES, key="attack_mode", on_change=clear_result)
         st.text_area("Ciphertext blocks", key="attack_ciphertext", max_chars=8192, on_change=clear_result)
         st.number_input("Maximum candidate checks", min_value=1, max_value=DEFAULT_BUDGET, key="attack_budget", on_change=clear_result)
