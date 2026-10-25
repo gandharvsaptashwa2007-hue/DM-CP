@@ -57,10 +57,13 @@ def render_gcd(theory) -> None:
     with inputs:
         with st.container(border=True):
             st.subheader("Choose your numbers")
-            st.selectbox("Example", list(PRESETS), key="gcd_preset")
-            st.button("Load example", on_click=load_example, key="load_example")
-            st.text_input("First integer (a)", key="gcd_a", max_chars=22, on_change=clear_result)
-            st.text_input("Second integer (b)", key="gcd_b", max_chars=22, on_change=clear_result)
+            with st.container(key="gcd_compact_inputs"):
+                example, load = st.columns([3, 1], vertical_alignment="bottom")
+                example.selectbox("Example", list(PRESETS), key="gcd_preset")
+                load.button("Load example", on_click=load_example, key="load_example")
+                first, second = st.columns(2)
+                first.text_input("First integer (a)", key="gcd_a", max_chars=22, on_change=clear_result)
+                second.text_input("Second integer (b)", key="gcd_b", max_chars=22, on_change=clear_result)
             st.caption("Whole numbers from −10¹⁸ to 10¹⁸. Negative values and zero are welcome.")
             st.button("Calculate GCD", type="primary", on_click=calculate, key="calculate")
             if st.session_state.gcd_error:

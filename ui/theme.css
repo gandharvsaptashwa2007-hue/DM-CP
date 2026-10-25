@@ -1,4 +1,5 @@
 :root { --ink: #1F2937; --muted: #6B7280; --indigo: #4F46E5; --teal: #14B8A6; }
+.st-key-gcd_compact_inputs { max-width: 720px; }
 .stApp { background: #F9FAFB; color: var(--ink); }
 html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif; }
 .block-container { max-width: 1800px; padding: 1rem 3rem 3rem; }
