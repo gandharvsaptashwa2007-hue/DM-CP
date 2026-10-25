@@ -11,7 +11,7 @@ APP = str(Path(__file__).resolve().parents[1] / "app.py")
 class InverseUITests(unittest.TestCase):
     def setUp(self):
         self.app = AppTest.from_file(APP).run()
-        self.app.radio(key="module").set_value("Extended Euclid & Inverse").run()
+        self.app.session_state.__setitem__("module", "Extended Euclid & Inverse"); self.app.run()
         self.assertFalse(self.app.exception)
 
     def click(self, key):
@@ -87,18 +87,18 @@ class InverseUITests(unittest.TestCase):
 
     def test_navigation_preserves_inputs_and_results_independently(self):
         self.example("Negative number · −3 mod 11")
-        self.app.radio(key="module").set_value("GCD Visualizer").run()
+        self.app.session_state.__setitem__("module", "GCD Visualizer"); self.app.run()
         self.app.text_input(key="gcd_a").set_value("48").run()
         self.app.text_input(key="gcd_b").set_value("18").run()
         self.click("calculate")
         self.click("show_all")
         self.assertEqual(self.app.metric[0].value, "6")
         for _ in range(2):
-            self.app.radio(key="module").set_value("Extended Euclid & Inverse").run()
+            self.app.session_state.__setitem__("module", "Extended Euclid & Inverse"); self.app.run()
             self.assertEqual(self.app.text_input(key="inverse_a").value, "-3")
             self.assertEqual(self.app.text_input(key="inverse_b").value, "11")
             self.assertEqual([m.value for m in self.app.metric], ["1", "7"])
-            self.app.radio(key="module").set_value("GCD Visualizer").run()
+            self.app.session_state.__setitem__("module", "GCD Visualizer"); self.app.run()
             self.assertEqual(self.app.text_input(key="gcd_a").value, "48")
             self.assertEqual(self.app.text_input(key="gcd_b").value, "18")
             self.assertEqual(self.app.metric[0].value, "6")

@@ -12,35 +12,38 @@ APP = str(Path(__file__).resolve().parents[1] / "app.py")
 class DesignTests(unittest.TestCase):
     def test_page_arrows_and_boundaries(self):
         app = AppTest.from_file(APP).run()
+        self.assertEqual(len(app.radio), 0)
         self.assertTrue(app.button(key="page_previous").disabled)
         app.button(key="page_next").click().run()
-        self.assertEqual(app.radio(key="module").value, "GCD Visualizer")
+        self.assertEqual(app.session_state["module"], "GCD Visualizer")
         app.button(key="calculate").click().run()
         app.button(key="page_next").click().run()
         app.button(key="page_previous").click().run()
         self.assertEqual(app.session_state["history_gcd"], ["gcd(252, 105) = 21"])
-        app.radio(key="module").set_value("Break the Key").run()
+        app.session_state.__setitem__("module", "Break the Key"); app.run()
         self.assertTrue(app.button(key="page_next").disabled)
+        app.button(key="page_home").click().run()
+        self.assertEqual(app.session_state["module"], "Home")
         self.assertFalse(app.exception)
 
     def setUp(self):
         self.app = AppTest.from_file(APP).run()
 
     def test_all_dashboard_cards_navigate(self):
-        self.assertEqual(self.app.radio(key="module").value, "Home")
+        self.assertEqual(self.app.session_state["module"], "Home")
         for name, (slug, *_) in MODULES.items():
             self.app.button(key=f"open_{slug}").click().run()
-            self.assertEqual(self.app.radio(key="module").value, name)
+            self.assertEqual(self.app.session_state["module"], name)
             self.assertFalse(self.app.exception)
-            self.app.radio(key="module").set_value("Home").run()
+            self.app.session_state.__setitem__("module", "Home"); self.app.run()
 
     def test_history_survives_navigation_and_input_edits(self):
         self.app.button(key="open_gcd").click().run()
         self.app.button(key="calculate").click().run()
         self.app.button(key="next").click().run()
         self.assertEqual(self.app.session_state["history_gcd"], ["gcd(252, 105) = 21"])
-        self.app.radio(key="module").set_value("RSA Lab").run()
-        self.app.radio(key="module").set_value("GCD Visualizer").run()
+        self.app.session_state.__setitem__("module", "RSA Lab"); self.app.run()
+        self.app.session_state.__setitem__("module", "GCD Visualizer"); self.app.run()
         self.app.text_input(key="gcd_a").set_value("17").run()
         self.assertEqual(len(self.app.session_state["history_gcd"]), 1)
         self.app.button(key="calculate").click().run()

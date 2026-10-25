@@ -2,20 +2,11 @@
 .stApp { background: #F9FAFB; color: var(--ink); }
 html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif; }
 .block-container { max-width: 1800px; padding: 4rem 3rem 3rem; }
-.st-key-site_header { background: white; border-bottom: 1px solid #E5E7EB; padding: 1.2rem 1.4rem; border-radius: 12px; margin-bottom: .5rem; }
-.site-brand { font-size: 1.3rem; font-weight: 750; letter-spacing: -.04em; }
-.site-brand span { color: #4F46E5; font-weight: 500; }
-.st-key-site_header [role="radiogroup"] { gap: .35rem; flex-wrap: wrap; }
-.st-key-site_header [role="radiogroup"] label { padding: .6rem .8rem; border-radius: 8px; margin: 0; transition: background 160ms ease; }
-.st-key-site_header [role="radiogroup"] label > div:first-child { display: none; }
-.st-key-site_header [role="radiogroup"] label:has(input:checked) { color: #4F46E5; background: #EEF2FF; box-shadow: inset 0 -2px #4F46E5; }
-.st-key-site_header [role="radiogroup"] label:has(input:focus-visible) { outline: 2px solid #818CF8; }
-.st-key-site_header [role="radiogroup"] label:hover { background: #F3F4F6; }
 .st-key-page_navigation { margin: .25rem 0 .75rem; }
-.st-key-page_navigation [data-testid="stCaptionContainer"] { text-align: center; padding-top: .5rem; }
+.st-key-page_navigation [data-testid="stCaptionContainer"] { text-align: left; padding-top: .5rem; }
+.st-key-page_navigation button { border: 0; background: transparent; min-width: 40px; }
+.st-key-page_navigation button:hover { background: #EEF2FF; }
 @media (max-width: 640px) {
- .st-key-site_header { padding: .8rem; }
- .st-key-site_header [role="radiogroup"] label { padding: .4rem .5rem; }
  .st-key-page_navigation [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; }
  .st-key-page_navigation [data-testid="stColumn"] { min-width: 0; }
 }

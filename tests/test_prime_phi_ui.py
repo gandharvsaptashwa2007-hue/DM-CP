@@ -13,7 +13,7 @@ class PrimePhiUITests(unittest.TestCase):
         self.app = AppTest.from_file(APP).run()
 
     def navigate(self, module):
-        self.app.radio(key="module").set_value(module).run()
+        self.app.session_state.__setitem__("module", module); self.app.run()
         self.assertFalse(self.app.exception)
 
     def click(self, key):

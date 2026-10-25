@@ -14,7 +14,7 @@ class AppCase(unittest.TestCase):
         self.app = AppTest.from_file(APP).run()
 
     def navigate(self, name):
-        self.app.radio(key="module").set_value(name).run()
+        self.app.session_state.__setitem__("module", name); self.app.run()
         self.assertFalse(self.app.exception)
 
     def click(self, key):

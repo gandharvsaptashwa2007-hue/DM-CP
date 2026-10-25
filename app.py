@@ -27,18 +27,17 @@ for key in (*widget_keys, *(f"crt_{field}_{i}" for field in ("a", "m") for i in 
         st.session_state[key] = st.session_state[key]
 
 pages = ("Home", *MODULES)
-with st.container(key="site_header"):
-    st.html('<div class="site-brand">Number Theory <span>Playground</span></div>')
-    module = st.radio("Choose a module", pages, key="module", horizontal=True, label_visibility="collapsed")
+module = st.session_state.setdefault("module", "Home")
 
 with st.container(key="page_navigation"):
-    previous, location, following = st.columns([1, 3, 1])
+    location, home, previous, following = st.columns([8, 1, 1, 1])
     index = pages.index(module)
-    previous.button("← Previous", key="page_previous", disabled=index == 0,
+    previous.button("←", key="page_previous", disabled=index == 0,
                     on_click=navigate, args=(pages[max(0, index - 1)],), use_container_width=True,
                     help=f"Previous page: {pages[max(0, index - 1)]}")
     location.caption(f"{module} · {index + 1} / {len(pages)}")
-    following.button("Next →", key="page_next", disabled=index == len(pages) - 1,
+    home.button("Home", key="page_home", disabled=index == 0, on_click=navigate, args=("Home",), use_container_width=True)
+    following.button("→", key="page_next", disabled=index == len(pages) - 1,
                      on_click=navigate, args=(pages[min(len(pages) - 1, index + 1)],), use_container_width=True,
                      help=f"Next page: {pages[min(len(pages) - 1, index + 1)]}")
 

@@ -13,7 +13,7 @@ APP = str(Path(__file__).resolve().parents[1] / "app.py")
 class GCDUITests(unittest.TestCase):
     def setUp(self):
         self.app = AppTest.from_file(APP).run()
-        self.app.radio(key="module").set_value("GCD Visualizer").run()
+        self.app.session_state.__setitem__("module", "GCD Visualizer"); self.app.run()
         self.assertFalse(self.app.exception)
 
     def click(self, key):
