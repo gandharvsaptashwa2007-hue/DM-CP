@@ -9,7 +9,7 @@ from ui.totient_view import render_totient
 from ui.crt_view import render_crt
 from ui.rsa_view import render_rsa
 from ui.attack_view import render_attack
-from ui.design import MODULES, apply_design, dashboard, results_pane
+from ui.design import MODULES, apply_design, dashboard, results_pane, navigate
 
 st.set_page_config(page_title="Number Theory Playground", page_icon="🧮", layout="wide")
 apply_design()
@@ -26,19 +26,25 @@ for key in (*widget_keys, *(f"crt_{field}_{i}" for field in ("a", "m") for i in 
     if key in st.session_state:
         st.session_state[key] = st.session_state[key]
 
-with st.sidebar:
-    st.title("Number Theory\nPlayground")
-    st.caption("UNIT 5 · FROM NUMBER THEORY TO RSA")
-    module = st.radio("Choose a module", ("Home", *MODULES), key="module")
-    st.divider()
-    st.markdown("**The learning path**")
-    st.markdown("GCD → Modular inverse → Primes & phi → CRT → RSA")
-    st.caption("Explore seven experiments, from Euclid’s algorithm to RSA and small-key recovery.")
+pages = ("Home", *MODULES)
+with st.container(key="site_header"):
+    st.html('<div class="site-brand">Number Theory <span>Playground</span></div>')
+    module = st.radio("Choose a module", pages, key="module", horizontal=True, label_visibility="collapsed")
+
+with st.container(key="page_navigation"):
+    previous, location, following = st.columns([1, 3, 1])
+    index = pages.index(module)
+    previous.button("← Previous", key="page_previous", disabled=index == 0,
+                    on_click=navigate, args=(pages[max(0, index - 1)],), use_container_width=True,
+                    help=f"Previous page: {pages[max(0, index - 1)]}")
+    location.caption(f"{module} · {index + 1} / {len(pages)}")
+    following.button("Next →", key="page_next", disabled=index == len(pages) - 1,
+                     on_click=navigate, args=(pages[min(len(pages) - 1, index + 1)],), use_container_width=True,
+                     help=f"Next page: {pages[min(len(pages) - 1, index + 1)]}")
 
 if module == "Home":
     dashboard()
 else:
-    st.caption(f"PLAYGROUND / {module.upper()}")
     workspace, history = st.columns([7, 3], gap="large")
     with workspace, st.container(key="workspace"):
         {"GCD Visualizer": render_gcd, "Extended Euclid & Inverse": render_inverse,

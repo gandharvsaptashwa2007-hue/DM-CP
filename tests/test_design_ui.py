@@ -10,6 +10,19 @@ APP = str(Path(__file__).resolve().parents[1] / "app.py")
 
 
 class DesignTests(unittest.TestCase):
+    def test_page_arrows_and_boundaries(self):
+        app = AppTest.from_file(APP).run()
+        self.assertTrue(app.button(key="page_previous").disabled)
+        app.button(key="page_next").click().run()
+        self.assertEqual(app.radio(key="module").value, "GCD Visualizer")
+        app.button(key="calculate").click().run()
+        app.button(key="page_next").click().run()
+        app.button(key="page_previous").click().run()
+        self.assertEqual(app.session_state["history_gcd"], ["gcd(252, 105) = 21"])
+        app.radio(key="module").set_value("Break the Key").run()
+        self.assertTrue(app.button(key="page_next").disabled)
+        self.assertFalse(app.exception)
+
     def setUp(self):
         self.app = AppTest.from_file(APP).run()
 

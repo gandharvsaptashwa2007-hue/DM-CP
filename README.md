@@ -271,9 +271,10 @@ RSA-OAEP. Do not enter passwords or private messages into this demonstration.
 ## UI redesign
 
 The app opens on a dashboard with seven keyboard-accessible experiment cards.
-The persistent sidebar switches between tools; desktop workspaces use a 70/30
+The top navigation switches between tools, with Previous/Next arrows following
+the learning order from Home through Break the Key. Desktop workspaces use a 70/30
 split with a separate history and formula panel. On small screens, the panels
-stack vertically and the sidebar can be opened from the upper-left control.
+stack vertically and the top navigation wraps to fit the screen.
 
 The visual system uses an off-white background, white cards, indigo actions and
 teal result highlights. Cards lift on hover; panels enter with a short transition.
