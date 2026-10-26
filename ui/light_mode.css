@@ -1,0 +1,21 @@
+/* Muted slate light palette: avoid large areas of pure white. */
+:root { color-scheme: light; --ink: #273449; --muted: #526174; --indigo: #514BA8; --teal: #168578; --tour-surface: #E8EDF2; }
+.stApp { background: #DDE4EB !important; color: var(--ink); }
+.st-key-workspace,.st-key-theory_panel,.st-key-results_pane { background: #E8EDF2; border-color: #BCC8D4; box-shadow: 0 3px 10px #2734490C; }
+[class*="st-key-card_"] button { background: radial-gradient(ellipse at 65% 105%,#7770AA12,transparent 75%),#E8EDF2; border-color: #BCC8D4; }
+[class*="st-key-card_"] button::after { background: radial-gradient(ellipse at 65% 100%,#7770AA20,transparent 80%); }
+.stApp input,.stApp textarea,.stApp [data-baseweb="input"],.stApp [data-baseweb="base-input"],.stApp [data-baseweb="select"] > div { background: #D6DEE7; color: #273449; border-color: #9AAABC; }
+[data-baseweb="popover"],[role="listbox"],[role="option"] { background: #E8EDF2; color: #273449; }
+.stApp [data-testid="stBaseButton-secondary"] { background-color: #E2E8EF; color: #273449; border-color: #9AAABC; }
+.stApp [data-testid="stBaseButton-primary"] { background: #514BA8; border-color: #514BA8; color: white; }
+.stApp [data-testid="stCaptionContainer"],.stApp [data-testid="stCaptionContainer"] p,.workspace-empty p { color: #526174; }
+.stApp [data-testid="stMetric"],.learning-strip { background: #CCDFDC; border-color: #9FBDB6; color: #204C47; }
+.stApp [data-testid="stMetricValue"],.stApp [data-testid="stMetricLabel"] { color: #204C47; }
+.workspace-empty,.stApp [data-testid="stExpander"] details,.stApp [data-testid="stCode"] pre { background: #E0E7ED; border-color: #BCC8D4; }
+.formula-card { background: #DCDDEE; color: #413C85; }
+.history-entry { border-color: #B6C5CE; }
+.brand p,.eyebrow { color: #514BA8; }
+.residue { background: #D6DEE7; }
+.residue.selected { background: #514BA8; color: white; }
+.site-footer { border-color: #B6C3CF; }
+.loading-skeleton div { background: linear-gradient(90deg,#CBD5E1,#E3E9EF,#CBD5E1); background-size: 200% 100%; }

@@ -23,10 +23,13 @@ def apply_design():
     st.html(f'<style>.math-banner {{ background-image: url("data:image/svg+xml;base64,{artwork}"); }}</style>')
     mode = st.session_state.get("color_mode", "Device")
     dark = Path(__file__).with_name("color_modes.css").read_text()
+    light = Path(__file__).with_name("light_mode.css").read_text()
     if mode == "Dark":
         st.html(f"<style>{dark}</style>")
+    elif mode == "Light":
+        st.html(f"<style>{light}</style>")
     elif mode == "Device":
-        st.html(f"<style>@media (prefers-color-scheme: dark) {{{dark}}}</style>")
+        st.html(f"<style>@media (prefers-color-scheme: light) {{{light}}} @media (prefers-color-scheme: dark) {{{dark}}}</style>")
 
 
 def navigate(name):

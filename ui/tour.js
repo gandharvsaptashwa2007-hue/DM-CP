@@ -52,7 +52,7 @@ function launchTour() {
     dialog.querySelector('h2').textContent=steps[index][1];dialog.querySelector('p').textContent=steps[index][2];
     back.disabled=index===0;next.textContent=index===steps.length-1?'Finish':'Next';
     const dark=win.getComputedStyle(doc.querySelector('.stApp')).backgroundColor==='rgb(17, 24, 39)';
-    dialog.style.background=dark?'#1f2937':'#ffffff';dialog.style.color=dark?'#e5e7eb':'#1f2937';
+    dialog.style.background=dark?'#1f2937':'#e8edf2';dialog.style.color=dark?'#e5e7eb':'#273449';
     doc.querySelector(steps[index][0]).scrollIntoView({behavior:'instant',block:'center',inline:'nearest'});
     layout();cancelAnimationFrame(frame);frame=requestAnimationFrame(layout);next.focus({preventScroll:true});
   }
