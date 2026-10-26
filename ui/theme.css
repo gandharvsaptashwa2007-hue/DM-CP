@@ -5,6 +5,12 @@
 .brand-lockup > img { width: 52px; height: 52px; flex: 0 0 52px; filter: drop-shadow(0 4px 8px #4F46E526); }
 .brand-lockup h1 { font-size: clamp(1.7rem, 3vw, 2.5rem) !important; }
 .brand-lockup p { font-size: .78rem; }
+.brand-lockup .brand { padding-top: 8px; }
+.math-banner { background-size: cover; background-position: center; border-radius: 16px; padding: 24px 28px; margin: 4px 0 16px; min-height: 175px; color: white; box-shadow: 0 8px 24px #312e8118; }
+.math-banner span { font-size: .65rem; letter-spacing: .18em; color: #99F6E4; }
+.math-banner h2 { color: white !important; font-size: 1.6rem !important; padding: .5rem 0 !important; }
+.math-banner p { color: #E0E7FF !important; font-size: .85rem; margin: 0; }
+@media(max-width:640px) { .math-banner { background-position: left; padding: 18px; } }
 .math-art { max-width: 330px; margin: 0 auto; }
 .math-art img { width: 100%; max-height: 110px; }
 .math-art img { animation: arrive 450ms ease-out; }

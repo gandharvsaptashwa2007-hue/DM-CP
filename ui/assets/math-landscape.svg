@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300">
+<defs><linearGradient id="sky"><stop stop-color="#312e81"/><stop offset="1" stop-color="#0f766e"/></linearGradient><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#a5b4fc" stroke-opacity=".15"/></pattern><radialGradient id="glow"><stop stop-color="#14b8a6" stop-opacity=".6"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></radialGradient></defs>
+<path fill="url(#sky)" d="M0 0h1440v300H0z"/><path fill="url(#grid)" d="M0 0h1440v300H0z"/><ellipse cx="1100" cy="140" rx="370" ry="220" fill="url(#glow)"/>
+<g fill="none" stroke="#a5b4fc" stroke-width="2" opacity=".6"><ellipse cx="1070" cy="150" rx="180" ry="85" transform="rotate(-25 1070 150)"/><ellipse cx="1070" cy="150" rx="180" ry="85" transform="rotate(25 1070 150)"/><path d="M730 250l150-130 160 85 130-155 190 160"/></g>
+<g fill="#5eead4"><circle cx="880" cy="120" r="7"/><circle cx="1040" cy="205" r="7"/><circle cx="1170" cy="50" r="7"/><circle cx="1360" cy="210" r="7"/></g>
+<g fill="#e0e7ff" font-family="monospace" font-size="26" opacity=".65"><text x="800" y="65">a ≡ b (mod n)</text><text x="1120" y="265">p × q = n</text><text x="1250" y="120">φ(n)</text></g>
+</svg>

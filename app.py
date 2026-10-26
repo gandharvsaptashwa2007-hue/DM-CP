@@ -46,6 +46,7 @@ with brand:
     render_brand()
 
 with controls, st.container(key="page_navigation"):
+    st.selectbox("Appearance", ("Device", "Light", "Dark"), key="color_mode", help="Device follows your system’s color preference automatically.")
     location, home, previous, following = st.columns([8, 1, 1, 1])
     index = st.session_state.page_cursor
     previous.button("←", key="page_previous", disabled=index == 0,
@@ -56,6 +57,7 @@ with controls, st.container(key="page_navigation"):
                      on_click=travel, args=(1,), use_container_width=True, help="Forward to next visit")
 
 loading = loading_placeholder()
+st.html('<div class="math-banner"><span>THE BEAUTY OF NUMBERS</span><h2>Explore the patterns.<br>Unlock the possibilities.</h2><p>From a simple remainder to the mathematics of RSA.</p></div>')
 if module == "Home":
     dashboard()
 else:

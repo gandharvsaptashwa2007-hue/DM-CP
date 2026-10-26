@@ -18,6 +18,15 @@ MODULES = {
 
 def apply_design():
     st.html(f"<style>{Path(__file__).with_name('theme.css').read_text()}</style>")
+    from base64 import b64encode
+    artwork = b64encode((Path(__file__).parent / 'assets/math-landscape.svg').read_bytes()).decode()
+    st.html(f'<style>.math-banner {{ background-image: url("data:image/svg+xml;base64,{artwork}"); }}</style>')
+    mode = st.session_state.get("color_mode", "Device")
+    dark = Path(__file__).with_name("color_modes.css").read_text()
+    if mode == "Dark":
+        st.html(f"<style>{dark}</style>")
+    elif mode == "Device":
+        st.html(f"<style>@media (prefers-color-scheme: dark) {{{dark}}}</style>")
 
 
 def navigate(name):

@@ -1,0 +1,22 @@
+:root { color-scheme: dark; --ink: #E5E7EB; --muted: #A5B4C7; }
+.stApp { background: radial-gradient(ellipse at top right,#4F46E51C,transparent 55%), #111827 !important; color: #E5E7EB !important; }
+.stApp h1,.stApp h2,.stApp h3,.stApp p,.stApp label,.stApp li,.stApp .katex { color: #E5E7EB; }
+.stApp [data-testid="stCaptionContainer"] p { color: #A5B4C7 !important; }
+.st-key-workspace,.st-key-theory_panel,.st-key-results_pane,[class*="st-key-card_"] button,.workspace-empty { background: #1F2937 !important; border-color: #374151 !important; color: #E5E7EB !important; }
+[class*="st-key-card_"] button strong { color: #F3F4F6 !important; }
+[class*="st-key-card_"] button p { color: #CBD5E1 !important; }
+.stApp input,.stApp textarea,.stApp [data-baseweb="input"],.stApp [data-baseweb="base-input"],.stApp [data-baseweb="select"] > div { background: #273449 !important; color: #F3F4F6 !important; border-color: #64748B !important; caret-color: white; }
+[data-baseweb="popover"],[role="listbox"],[role="option"] { background: #273449 !important; color: #F3F4F6 !important; }
+.stApp button { color: #E5E7EB; border-color: #64748B; background-color: #273449; }
+.stApp button:disabled { color: #94A3B8; opacity: .6; }
+.stApp [data-testid="stBaseButton-primary"] { background: #4F46E5; color: white; }
+.stApp [data-testid="stExpander"] details,.stApp [data-testid="stCode"] pre,.stApp [data-testid="stCode"] code { background: #1F2937 !important; color: #E5E7EB !important; }
+.stApp table,.stApp th,.stApp td { color: #E5E7EB !important; border-color: #475569 !important; }
+.stApp [data-testid="stMetric"],.learning-strip { background: #153F40 !important; color: #CCFBF1 !important; }
+.learning-strip span,.history-entry small { color: #5EEAD4 !important; }
+.formula-card { background: #312E81; color: #E0E7FF; }
+.history-entry { border-color: #475569; }
+.stApp [data-testid="stAlert"] { background: #273449; color: #E5E7EB; }
+.brand p,.eyebrow { color: #A5B4FC !important; }
+.residue { background: #374151; color: #E5E7EB; }
+.residue.selected { background: #4F46E5; }
