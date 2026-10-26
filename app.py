@@ -10,6 +10,7 @@ from ui.crt_view import render_crt
 from ui.rsa_view import render_rsa
 from ui.attack_view import render_attack
 from ui.explanation_play import render_explanation_play
+from ui.tour import render_tour
 from ui.visuals import brand as render_brand, illustration, loading_placeholder, empty_workspace, not_found
 from ui.design import MODULES, apply_design, dashboard, results_pane, navigate, travel, choose_page
 
@@ -77,3 +78,4 @@ else:
     with history:
         results_pane(module)
 loading.empty()
+render_tour(module)

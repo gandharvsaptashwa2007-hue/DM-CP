@@ -1,4 +1,6 @@
 :root { --ink: #1F2937; --muted: #6B7280; --indigo: #4F46E5; --teal: #14B8A6; }
+.st-key-start_tour { position: fixed; bottom: 18px; right: 24px; width: auto !important; z-index: 100; }
+.st-key-start_tour button { box-shadow: 0 4px 16px #0002; }
 [data-testid="stSelectbox"] [data-baseweb="select"], [data-testid="stSelectbox"] [data-baseweb="select"] * { cursor: pointer !important; }
 [data-testid="stHeaderActionElements"] { display: none !important; }
 .brand-lockup { display: flex; align-items: center; gap: 14px; }
