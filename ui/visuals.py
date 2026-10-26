@@ -9,7 +9,7 @@ def svg_image(svg, alt):
 LOGO = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Modular Minds logo"><rect width="64" height="64" rx="18" fill="#4F46E5"/><path d="M14 44V22l18 18 18-18v22" fill="none" stroke="white" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="16" r="6" fill="#14B8A6"/></svg>'''
 
 def brand():
-    st.html(f'<div class="brand-lockup">{svg_image(LOGO, "Modular Minds logo")}<div class="brand"><h1>Modular Minds</h1><p>Explore · Experiment · Understand</p></div></div>')
+    st.markdown(f'<div class="brand-lockup">{svg_image(LOGO, "Modular Minds logo")}<div class="brand"><h1>Modular Minds</h1><p>Explore · Experiment · Understand</p></div></div>', unsafe_allow_html=True)
 
 def illustration(slug):
     motifs = {
@@ -21,7 +21,7 @@ def illustration(slug):
     labels = motifs[slug]
     nodes = ''.join(f'<circle cx="{65+i*100}" cy="55" r="28" fill="{color}"/><text x="{65+i*100}" y="62" text-anchor="middle" fill="white" font-family="sans-serif" font-size="18">{label}</text>' for i, (label, color) in enumerate(zip(labels, ("#4F46E5", "#0F766E", "#4F46E5"))))
     svg = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 110"><path d="M65 55H265" stroke="#A5B4FC" stroke-width="3" stroke-dasharray="5 6"/>{nodes}</svg>'
-    st.html(f'<div class="math-art">{svg_image(svg, slug + " mathematical symbols")}</div>')
+    st.markdown(f'<div class="math-art">{svg_image(svg, slug + " mathematical symbols")}</div>', unsafe_allow_html=True)
 
 def loading_placeholder():
     slot = st.empty()
