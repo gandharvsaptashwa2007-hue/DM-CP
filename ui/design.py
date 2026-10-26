@@ -57,9 +57,9 @@ def dashboard():
     from ui.visuals import illustration
     intro, artwork = st.columns([3, 1])
     intro.subheader("Small experiments. Big ideas.", anchor=False)
+    intro.write("Your number theory playground. Start with a remainder, follow the steps, and build your way to RSA.")
     with artwork:
         illustration("home")
-    st.write("Your number theory playground. Start with a remainder, follow the steps, and build your way to RSA.")
     st.html('<div class="learning-strip"><span>01 / Foundations</span><b>GCD & inverses</b><span>→</span><b>Primes & congruences</b><span>→</span><b>Encryption & discovery</b></div>')
     st.subheader("Choose an experiment")
     names = list(MODULES)

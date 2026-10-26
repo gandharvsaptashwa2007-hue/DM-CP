@@ -41,18 +41,18 @@ for key in (*widget_keys, *(f"crt_{field}_{i}" for field in ("a", "m") for i in 
 pages = ("Home", *MODULES)
 module = st.session_state.setdefault("module", "Home")
 navigate(module)
-brand, controls = st.columns([1, 1], gap="medium")
-with brand:
+brand, controls = st.columns([1, 2], gap="medium", vertical_alignment="center")
+with brand, st.container(key="brand_home"):
     render_brand()
+    st.button("Modular Minds — Home", key="page_home", on_click=navigate, args=("Home",), use_container_width=True)
 
 with controls, st.container(key="page_navigation"):
-    st.selectbox("Appearance", ("Device", "Light", "Dark"), key="color_mode", help="Device follows your system’s color preference automatically.")
-    location, home, previous, following = st.columns([8, 1, 1, 1])
+    location, appearance, previous, following = st.columns([5, 3, 1, 1], vertical_alignment="center")
+    appearance.selectbox("Appearance", ("Device", "Light", "Dark"), key="color_mode", label_visibility="collapsed", help="Device follows your system’s color preference automatically.")
     index = st.session_state.page_cursor
     previous.button("←", key="page_previous", disabled=index == 0,
                     on_click=travel, args=(-1,), use_container_width=True, help="Back to previous visit")
     location.selectbox("Page", pages, key="page_picker", on_change=choose_page, label_visibility="collapsed")
-    home.button("Home", key="page_home", disabled=module == "Home", on_click=navigate, args=("Home",), use_container_width=True)
     following.button("→", key="page_next", disabled=index == len(st.session_state.page_visits) - 1,
                      on_click=travel, args=(1,), use_container_width=True, help="Forward to next visit")
 
