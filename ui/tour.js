@@ -65,6 +65,16 @@ function launchTour() {
 }
 (() => {
   const win=window.parent, doc=win.document;
+  if (win.modularCurrentPage !== tourPage) {
+    win.modularCurrentPage = tourPage;
+    if (win.modularTourCleanup) win.modularTourCleanup();
+    const top = () => {
+      if (win.modularCurrentPage !== tourPage) return;
+      doc.querySelector('[data-testid="stMain"]')?.scrollTo({top:0,behavior:'instant'});
+      win.scrollTo({top:0,behavior:'instant'});
+    };
+    top(); win.requestAnimationFrame(top); win.setTimeout(top, 100);
+  }
   if(win.modularTourTriggerCleanup)win.modularTourTriggerCleanup();
   const start=(event)=>{if(!event.target.closest('.st-key-start_tour button'))return;event.preventDefault();event.stopImmediatePropagation();launchTour();};
   doc.addEventListener('click',start,true);

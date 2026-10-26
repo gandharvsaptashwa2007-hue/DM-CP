@@ -67,6 +67,9 @@ def dashboard():
         columns = st.columns(3, gap="medium")
         for column, name in zip(columns, names[start:start + 3]):
             slug, icon, description, _ = MODULES[name]
+            icon = {"gcd": "calculate", "inverse": "cycle", "prime": "fact_check",
+                    "phi": "donut_large", "crt": "merge", "rsa": "enhanced_encryption",
+                    "attack": "key_off"}[slug]
             with column, st.container(key=f"card_{slug}"):
                 st.button(f"**{name}**\n\n{description}", icon=f":material/{icon}:",
                           key=f"open_{slug}", use_container_width=True,

@@ -84,6 +84,11 @@ h3 { font-size: 1.12rem !important; }
 .st-key-card_phi button [data-testid="stIconMaterial"], .st-key-card_crt button [data-testid="stIconMaterial"], .st-key-card_attack button [data-testid="stIconMaterial"] { color: #0F766E; background: #F0FDFA; }
 [class*="st-key-card_"] button p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
 [class*="st-key-card_"] button strong { display: block; color: var(--ink); font-size: 1.12rem; margin-bottom: .55rem; }
+[class*="st-key-card_"] button { position: relative; overflow: hidden; min-height: 240px; border-radius: 24px; padding: 110px 24px 22px; background: radial-gradient(ellipse at 65% 105%, #4F46E51C, transparent 70%), linear-gradient(135deg,#FFFFFF,#F9FAFB); justify-content: flex-end; box-shadow: 0 2px 5px #1F293710; }
+[class*="st-key-card_"] button [data-testid="stIconMaterial"] { position: absolute; top: -14px; left: -10px; width: 100px; height: 100px; font-size: 92px; transform: rotate(-12deg); color: #6366A0; opacity: .65; background: transparent !important; padding: 0; }
+.st-key-card_phi button,.st-key-card_crt button,.st-key-card_attack button { background: radial-gradient(ellipse at 65% 105%, #14B8A61C, transparent 70%), linear-gradient(135deg,#FFFFFF,#F9FAFB); }
+[class*="st-key-card_"] button strong { font-size: 1.2rem; letter-spacing: -.025em; }
+[class*="st-key-card_"] button p { font-size: .84rem; line-height: 1.5; }
 .st-key-workspace, .st-key-results_pane { background: white; border-radius: 16px; padding: 1.5rem; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1); animation: arrive 240ms ease-out; }
 .st-key-workspace h1 { font-size: 2rem !important; }
 @media (min-width: 901px) {

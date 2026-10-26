@@ -5,6 +5,8 @@
 .st-key-workspace,.st-key-theory_panel,.st-key-results_pane,[class*="st-key-card_"] button,.workspace-empty { background: #1F2937 !important; border-color: #374151 !important; color: #E5E7EB !important; }
 [class*="st-key-card_"] button strong { color: #F3F4F6 !important; }
 [class*="st-key-card_"] button p { color: #CBD5E1 !important; }
+[class*="st-key-card_"] button { background: radial-gradient(ellipse at 65% 105%,#4F46E535,transparent 75%), #1F2937 !important; }
+[class*="st-key-card_"] button [data-testid="stIconMaterial"] { color: #A5B4FC; }
 .stApp input,.stApp textarea,.stApp [data-baseweb="input"],.stApp [data-baseweb="base-input"],.stApp [data-baseweb="select"] > div { background: #273449 !important; color: #F3F4F6 !important; border-color: #64748B !important; caret-color: white; }
 [data-baseweb="popover"],[role="listbox"],[role="option"] { background: #273449 !important; color: #F3F4F6 !important; }
 .stApp button { color: #E5E7EB; border-color: #64748B; background-color: #273449; }

@@ -20,6 +20,7 @@ def tour_steps(module):
         steps += [(f".st-key-card_{slug}", name, description + " Select this card after the tour to open the experiment.")
                   for name, (slug, _, description, _) in MODULES.items()]
     else:
+        steps = []  # Shared navigation is taught only on Home.
         slug = MODULES[module][0]
         specific = {
             "inverse": [("inverse_mode", "Two ways to explore", "Switch between modular inversion and the full Bézout identity.")],
@@ -42,7 +43,8 @@ def tour_steps(module):
             (".st-key-results_pane", "Compare your discoveries", "History appears after a calculation. Scroll through previous results or clear this module’s history."),
         ]
         steps += [(f".st-key-{key}", title, description) for key, title, description in specific.get(slug, [])]
-    steps.append((".st-key-start_tour", "You’re ready to explore", "Replay this tour anytime. On module pages, calculate first and replay to also tour the result tables, playback, and history. Your inputs stay untouched."))
+    if module == "Home":
+        steps.append((".st-key-start_tour", "You’re ready to explore", "Replay this tour anytime. On module pages, calculate first and replay to also tour the result tables, playback, and history. Your inputs stay untouched."))
     return steps
 
 
@@ -50,4 +52,5 @@ def render_tour(module):
     st.button("Take a tour", icon=":material/explore:", key="start_tour", help="A guided walkthrough of the current page")
     script = Path(__file__).with_name("tour.js").read_text()
     payload = json.dumps(tour_steps(module)).replace("<", "\\u003c")
-    components.html(f"<!-- {uuid4().hex} --><script>const tourSteps = {payload};\n{script}</script>", height=0)
+    page = json.dumps(module).replace("<", "\\u003c")
+    components.html(f"<!-- {uuid4().hex} --><script>const tourPage = {page}; const tourSteps = {payload};\n{script}</script>", height=0)
