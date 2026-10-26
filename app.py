@@ -10,10 +10,18 @@ from ui.crt_view import render_crt
 from ui.rsa_view import render_rsa
 from ui.attack_view import render_attack
 from ui.explanation_play import render_explanation_play
+from ui.visuals import brand as render_brand, illustration, loading_placeholder, empty_workspace, not_found
 from ui.design import MODULES, apply_design, dashboard, results_pane, navigate, travel, choose_page
 
 st.set_page_config(page_title="Modular Minds", page_icon="🧮", layout="wide")
 apply_design()
+routes = {"home": "Home", **{data[0]: name for name, data in MODULES.items()}}
+requested = st.query_params.get("page", "home")
+if requested not in routes:
+    not_found()
+    st.stop()
+if "module" not in st.session_state:
+    st.session_state.module = routes[requested]
 for key in list(st.session_state):
     if key.startswith(("challenge_answer_", "challenge_hint_", "challenge_solution_", "explore_")):
         st.session_state[key] = st.session_state[key]
@@ -35,7 +43,7 @@ module = st.session_state.setdefault("module", "Home")
 navigate(module)
 brand, controls = st.columns([1, 1], gap="medium")
 with brand:
-    st.html('<div class="brand"><h1>Modular Minds</h1><p>Explore · Experiment · Understand</p></div>')
+    render_brand()
 
 with controls, st.container(key="page_navigation"):
     location, home, previous, following = st.columns([8, 1, 1, 1])
@@ -47,18 +55,23 @@ with controls, st.container(key="page_navigation"):
     following.button("→", key="page_next", disabled=index == len(st.session_state.page_visits) - 1,
                      on_click=travel, args=(1,), use_container_width=True, help="Forward to next visit")
 
+loading = loading_placeholder()
 if module == "Home":
     dashboard()
 else:
     workspace, history = st.columns([7, 3], gap="large")
     with history:
         theory = st.container(key="theory_panel")
+    with theory:
+        illustration(MODULES[module][0])
     with workspace, st.container(key="workspace"):
         {"GCD Visualizer": render_gcd, "Extended Euclid & Inverse": render_inverse,
          "Primality Tester": render_primality, "Euler’s Phi": render_totient,
          "CRT Solver": render_crt, "RSA Lab": render_rsa,
          "Break the Key": render_attack}[module](theory)
+        empty_workspace(MODULES[module][0])
     with theory:
         render_explanation_play(module, MODULES[module][0])
     with history:
         results_pane(module)
+loading.empty()

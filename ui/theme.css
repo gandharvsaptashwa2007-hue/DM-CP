@@ -1,9 +1,25 @@
 :root { --ink: #1F2937; --muted: #6B7280; --indigo: #4F46E5; --teal: #14B8A6; }
+[data-testid="stSelectbox"] [data-baseweb="select"], [data-testid="stSelectbox"] [data-baseweb="select"] * { cursor: pointer !important; }
+[data-testid="stHeaderActionElements"] { display: none !important; }
+.brand-lockup { display: flex; align-items: center; gap: 14px; }
+.brand-lockup > img { width: 52px; height: 52px; flex: 0 0 52px; filter: drop-shadow(0 4px 8px #4F46E526); }
+.brand-lockup h1 { font-size: clamp(1.7rem, 3vw, 2.5rem) !important; }
+.brand-lockup p { font-size: .78rem; }
+.math-art { max-width: 330px; margin: 0 auto; }
+.math-art img { width: 100%; max-height: 110px; }
+.math-art img { animation: arrive 450ms ease-out; }
+.workspace-empty { padding: 1rem; margin-top: 1rem; border: 1px dashed #A5B4FC; border-radius: 12px; background: #F9FAFB; }
+.workspace-empty p { color: #6B7280; margin-bottom: 0; font-size: .9rem; }
+.not-found { padding: 3rem 1rem; text-align: center; }
+.not-found > span { font-size: 6rem; font-weight: 800; color: #4F46E5; }
+.loading-skeleton div { height: 16px; margin: 12px 0; border-radius: 8px; background: linear-gradient(90deg,#EEF2FF,#F9FAFB,#EEF2FF); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+.loading-skeleton div:nth-child(2) { width: 70%; }
+@keyframes shimmer { to { background-position: -200% 0; } }
 .residue-track { display: flex; flex-wrap: wrap; gap: 6px; }
 .residue { display: inline-flex; justify-content: center; align-items: center; width: 30px; height: 30px; border-radius: 50%; background: #F3F4F6; color: #1F2937; }
 .residue.selected { background: #4F46E5; color: white; outline: 2px solid #14B8A6; outline-offset: 2px; font-weight: 700; }
 .st-key-gcd_compact_inputs { max-width: 720px; }
-.stApp { background: #F9FAFB; color: var(--ink); }
+.stApp { background: radial-gradient(ellipse at top right, #4F46E509, transparent 55%), radial-gradient(ellipse at bottom left, #14B8A608, transparent 50%), #F9FAFB; color: var(--ink); }
 html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif; }
 .block-container { max-width: 1800px; padding: 1rem 3rem 3rem; }
 [data-testid="stHeader"] { display: none; }
