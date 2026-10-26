@@ -35,13 +35,13 @@ html, body, [class*="css"], .stApp { font-family: Inter, "Segoe UI", sans-serif;
 .brand p { margin: .3rem 0 .7rem; color: #4F46E5; font-size: .85rem; letter-spacing: .07em; }
 .st-key-page_navigation { margin-left: auto !important; }
 .st-key-page_navigation button p { white-space: nowrap; }
-.st-key-page_navigation { max-width: 650px; }
+.st-key-page_navigation { max-width: 500px; }
 .st-key-workspace [data-testid="stSelectbox"] { max-width: 380px; }
 .st-key-workspace [data-testid="stTextInput"], .st-key-workspace [data-testid="stNumberInput"] { max-width: 340px; }
 .st-key-workspace [data-testid="stHorizontalBlock"]:has([data-testid="stTextInput"]) { max-width: 720px; }
 .st-key-workspace [data-testid="stHorizontalBlock"]:has([data-testid="stSelectbox"]) { max-width: 640px; }
 .st-key-page_navigation [data-testid="stHorizontalBlock"] { gap: .5rem; }
-.st-key-page_navigation [data-testid="stColumn"]:first-child { flex: 1 1 240px; min-width: 0; }
+.st-key-page_navigation [data-testid="stColumn"]:first-child { flex: 1 1 180px; max-width: 250px; min-width: 0; }
 .st-key-page_navigation [data-testid="stColumn"]:not(:first-child) { flex: 0 0 48px; min-width: 48px; }
 .st-key-page_navigation [data-testid="stColumn"]:nth-child(2) { flex: 0 0 130px; min-width: 130px; }
 .st-key-brand_home { position: relative; }
@@ -89,6 +89,17 @@ h3 { font-size: 1.12rem !important; }
 .st-key-card_phi button,.st-key-card_crt button,.st-key-card_attack button { background: radial-gradient(ellipse at 65% 105%, #14B8A61C, transparent 70%), linear-gradient(135deg,#FFFFFF,#F9FAFB); }
 [class*="st-key-card_"] button strong { font-size: 1.2rem; letter-spacing: -.025em; }
 [class*="st-key-card_"] button p { font-size: .84rem; line-height: 1.5; }
+[class*="st-key-card_"] button [data-testid="stIconMaterial"] { transform-origin: center; transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 250ms ease, color 250ms ease; }
+[class*="st-key-card_"] button::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 65% 100%,#818CF82B,transparent 80%); opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
+[class*="st-key-card_"] button:is(:hover,:focus-visible)::after { opacity: 1; }
+[class*="st-key-card_"] button:is(:hover,:focus-visible) [data-testid="stIconMaterial"] { transform: translate(24px,24px) rotate(0deg) scale(.6); opacity: 1; color: var(--indigo); }
+@media (hover: hover) and (pointer: fine) {
+ [class*="st-key-card_"] button [data-testid="stMarkdownContainer"] { transform: translateY(14px); transition: transform 250ms ease; }
+ [class*="st-key-card_"] button [data-testid="stMarkdownContainer"] p + p { opacity: 0; transition: opacity 250ms ease; }
+ [class*="st-key-card_"] button:is(:hover,:focus-visible) [data-testid="stMarkdownContainer"] { transform: translateY(0); }
+ [class*="st-key-card_"] button:is(:hover,:focus-visible) [data-testid="stMarkdownContainer"] p + p { opacity: 1; }
+}
+.site-footer { margin-top: 40px; min-height: 90px; border-top: 1px solid #D1D5DB; padding: 20px 0; color: var(--muted); font-size: .8rem; }
 .st-key-workspace, .st-key-results_pane { background: white; border-radius: 16px; padding: 1.5rem; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1); animation: arrive 240ms ease-out; }
 .st-key-workspace h1 { font-size: 2rem !important; }
 @media (min-width: 901px) {

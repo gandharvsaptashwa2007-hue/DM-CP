@@ -78,4 +78,5 @@ else:
     with history:
         results_pane(module)
 loading.empty()
+st.html('<footer class="site-footer" aria-label="Site footer">Modular Minds</footer>')
 render_tour(module)
